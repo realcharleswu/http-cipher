@@ -21,12 +21,12 @@ func main() {
 	if isValidURL(user_url) {
 		if !urlPathIsEmpty(user_url) {
 			decodedPath, err := url.QueryUnescape(user_url.Path)
-			fmt.Printf("URL with path decoded:\n%s://%s%s", user_url.Scheme, user_url.Host, decodedPath)
+			fmt.Printf("URL with path decoded:\n%s://%s%s\n", user_url.Scheme, user_url.Host, decodedPath)
 			if err != nil {
 				return
 			}
 		} else {
-			fmt.Println("Path is empty, nothing to decode")
+			fmt.Println("Path is empty, nothing to decode.")
 		}
 	} else {
 		fmt.Println("Invalid URL!")

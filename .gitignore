@@ -20,3 +20,9 @@
 # Go workspace file
 go.work
 go.work.sum
+
+# Node stuff
+
+# Dependency directories
+node_modules/
+jspm_packages/

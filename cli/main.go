@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
-import "net/url"
+import (
+	"fmt"
+	"net/url"
+)
 
 func main() {
 	fmt.Println("Enter a valid URL: ")
@@ -12,15 +14,27 @@ func main() {
 		fmt.Println("User input error:", err)
 		return
 	}
-	if IsUrl(user_input) {
-		fmt.Println("User inputted: ", user_input)
+	user_url, err := url.Parse(user_input)
+	if err != nil {
+		fmt.Println("Parsing error", err)
+	}
+	if isValidURL(user_url) {
+		if !urlPathIsEmpty(user_url) {
+			fmt.Println("path has something", user_url.Path)
+		} else {
+			fmt.Println("Path has nothing")
+		}
 	} else {
 		fmt.Println("Invalid URL!")
 		return
 	}
+
 }
 
-func IsUrl(str string) bool {
-    u, err := url.Parse(str)
-    return err == nil && u.Scheme != "" && u.Host != ""
+func isValidURL(u *url.URL) bool {
+	return u.Scheme != "" && u.Host != ""
+}
+
+func urlPathIsEmpty(u *url.URL) bool {
+	return u.Path == "" || u.Path == "/"
 }

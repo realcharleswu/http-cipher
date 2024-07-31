@@ -1,6 +1,6 @@
 name: GH Sanity Check
 run-name: ${{ github.actor }} is checking GL vs GH
-on: [push]
+on: [workflow_dispatch]
 jobs:
   test-name:
     runs-on: ubuntu-latest
